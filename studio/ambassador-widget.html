@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ambassador Leaderboard</title>
+<!-- ============================================================
+  AMBASSADOR LEADERBOARD WIDGET
+  For CrowdChange Custom Content (HTML / CSS / JS fields)
+  Copy each marked section into the corresponding field.
+============================================================ -->
+
+<!-- ====================== CSS FIELD ====================== -->
+<style>
+/* --- Ambassador Widget --- */
+.amb-widget {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  max-width: 640px;
+  margin: 0 auto;
+  color: #1a2332;
+  -webkit-font-smoothing: antialiased;
+}
+
+.amb-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 4px 12px;
+  border-bottom: 2px solid #0ea5e9;
+}
+
+.amb-header h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: #0c4a6e;
+}
+
+.amb-header .amb-count {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Table header */
+.amb-cols {
+  display: grid;
+  grid-template-columns: 40px 1fr 110px 60px 72px;
+  gap: 0;
+  padding: 10px 8px 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Rows */
+.amb-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 110px 60px 72px;
+  gap: 0;
+  align-items: center;
+  padding: 10px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s;
+}
+
+.amb-row:hover {
+  background: #f8fafc;
+}
+
+/* Rank badge */
+.amb-rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  background: #f1f5f9;
+}
+
+.amb-rank--1 {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #78350f;
+  box-shadow: 0 1px 3px rgba(245, 158, 11, 0.3);
+}
+
+.amb-rank--2 {
+  background: linear-gradient(135deg, #d1d5db, #9ca3af);
+  color: #374151;
+  box-shadow: 0 1px 3px rgba(156, 163, 175, 0.3);
+}
+
+.amb-rank--3 {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(180, 83, 9, 0.3);
+}
+
+/* Name */
+.amb-name {
+  font-weight: 600;
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+
+.amb-name a {
+  color: #0c4a6e;
+  text-decoration: none;
+}
+
+.amb-name a:hover {
+  color: #0ea5e9;
+  text-decoration: underline;
+}
+
+/* Progress bar under name */
+.amb-bar-wrap {
+  margin-top: 4px;
+  height: 3px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  overflow: hidden;
+  max-width: 160px;
+}
+
+.amb-bar {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+  transition: width 0.6s ease;
+}
+
+.amb-bar--over {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+/* Raised */
+.amb-raised {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #0c4a6e;
+  text-align: right;
+  padding-right: 8px;
+}
+
+/* Gifts */
+.amb-gifts {
+  font-size: 0.82rem;
+  color: #475569;
+  text-align: center;
+}
+
+/* Goal % */
+.amb-pct {
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-align: right;
+}
+
+.amb-pct--over {
+  color: #059669;
+}
+
+.amb-pct--under {
+  color: #475569;
+}
+
+/* States */
+.amb-loading, .amb-error, .amb-empty {
+  text-align: center;
+  padding: 40px 16px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.amb-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #0ea5e9;
+  border-radius: 50%;
+  animation: ambSpin 0.7s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes ambSpin {
+  to { transform: rotate(360deg); }
+}
+
+.amb-error {
+  color: #ef4444;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 520px) {
+  .amb-cols {
+    display: none;
+  }
+
+  .amb-row {
+    grid-template-columns: 32px 1fr;
+    grid-template-rows: auto auto;
+    gap: 2px 8px;
+    padding: 12px 4px;
+  }
+
+  .amb-rank {
+    grid-row: 1 / 3;
+    width: 26px;
+    height: 26px;
+    font-size: 0.7rem;
+    align-self: start;
+    margin-top: 2px;
+  }
+
+  .amb-name {
+    grid-column: 2;
+    font-size: 0.85rem;
+  }
+
+  .amb-bar-wrap {
+    display: none;
+  }
+
+  .amb-meta-mobile {
+    grid-column: 2;
+    display: flex;
+    gap: 12px;
+    font-size: 0.78rem;
+    color: #64748b;
+  }
+
+  .amb-meta-mobile strong {
+    color: #0c4a6e;
+  }
+
+  .amb-raised, .amb-gifts, .amb-pct {
+    display: none;
+  }
+}
+
+@media (min-width: 521px) {
+  .amb-meta-mobile {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ====================== HTML FIELD ====================== -->
+<div class="amb-widget" id="ambWidget">
+  <div class="amb-loading">
+    <div class="amb-spinner"></div>
+    Loading ambassadors...
+  </div>
+</div>
+
+<!-- ====================== JS FIELD ====================== -->
+<script>
+(function() {
+  // ---- CONFIG (change per school) ----
+  var SCHOOL = 'ssa';
+  var API_URL = 'https://educationjuive.com/api/ambassadors?school=' + SCHOOL;
+  // ------------------------------------
+
+  var widget = document.getElementById('ambWidget');
+
+  fetch(API_URL)
+    .then(function(r) { return r.ok ? r.json() : Promise.reject('HTTP ' + r.status); })
+    .then(function(data) {
+      var list = data.ambassadors || [];
+      if (list.length === 0) {
+        setText(widget, 'No ambassadors yet');
+        return;
+      }
+      render(list);
+    })
+    .catch(function() {
+      widget.textContent = '';
+      var err = document.createElement('div');
+      err.className = 'amb-error';
+      err.textContent = 'Unable to load ambassadors';
+      widget.appendChild(err);
+    });
+
+  function render(ambassadors) {
+    widget.textContent = '';
+
+    // Header
+    var header = el('div', 'amb-header');
+    var h2 = el('h2', '');
+    h2.textContent = 'Ambassadors';
+    var count = el('span', 'amb-count');
+    count.textContent = ambassadors.length + ' fundraiser' + (ambassadors.length !== 1 ? 's' : '');
+    header.appendChild(h2);
+    header.appendChild(count);
+    widget.appendChild(header);
+
+    // Column headers
+    var cols = el('div', 'amb-cols');
+    ['', 'Name', 'Raised', 'Gifts', 'Goal'].forEach(function(label, i) {
+      var span = document.createElement('span');
+      span.textContent = label;
+      if (i === 2) span.style.cssText = 'text-align:right;padding-right:8px';
+      if (i === 3) span.style.textAlign = 'center';
+      if (i === 4) span.style.textAlign = 'right';
+      cols.appendChild(span);
+    });
+    widget.appendChild(cols);
+
+    // Rows
+    ambassadors.forEach(function(a, i) {
+      var rank = i + 1;
+      var row = el('div', 'amb-row');
+
+      // Rank badge
+      var badge = el('div', 'amb-rank' + (rank <= 3 ? ' amb-rank--' + rank : ''));
+      badge.textContent = rank;
+      row.appendChild(badge);
+
+      // Name + progress bar
+      var nameCell = el('div', 'amb-name');
+      if (a.url && safeUrl(a.url)) {
+        var link = document.createElement('a');
+        link.href = a.url;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = a.name || '';
+        nameCell.appendChild(link);
+      } else {
+        nameCell.textContent = a.name || '';
+      }
+      var barWrap = el('div', 'amb-bar-wrap');
+      var bar = el('div', 'amb-bar' + (a.pct >= 100 ? ' amb-bar--over' : ''));
+      bar.style.width = Math.min(a.pct, 100) + '%';
+      barWrap.appendChild(bar);
+      nameCell.appendChild(barWrap);
+      row.appendChild(nameCell);
+
+      // Raised
+      var raised = el('div', 'amb-raised');
+      raised.textContent = a.raised_formatted || '';
+      row.appendChild(raised);
+
+      // Gifts
+      var gifts = el('div', 'amb-gifts');
+      gifts.textContent = a.donors;
+      row.appendChild(gifts);
+
+      // Goal %
+      var pct = el('div', 'amb-pct ' + (a.pct >= 100 ? 'amb-pct--over' : 'amb-pct--under'));
+      pct.textContent = a.pct + '%';
+      row.appendChild(pct);
+
+      // Mobile meta row
+      var meta = el('div', 'amb-meta-mobile');
+      var mRaised = document.createElement('span');
+      var mStrong = document.createElement('strong');
+      mStrong.textContent = a.raised_formatted || '';
+      mRaised.appendChild(mStrong);
+      meta.appendChild(mRaised);
+      var mGifts = document.createElement('span');
+      mGifts.textContent = a.donors + ' gift' + (a.donors !== 1 ? 's' : '');
+      meta.appendChild(mGifts);
+      var mPct = document.createElement('span');
+      mPct.className = a.pct >= 100 ? 'amb-pct--over' : 'amb-pct--under';
+      mPct.textContent = a.pct + '% of goal';
+      meta.appendChild(mPct);
+      row.appendChild(meta);
+
+      widget.appendChild(row);
+    });
+  }
+
+  function el(tag, cls) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    return e;
+  }
+
+  function setText(parent, text) {
+    parent.textContent = '';
+    var div = el('div', 'amb-empty');
+    div.textContent = text;
+    parent.appendChild(div);
+  }
+
+  function safeUrl(url) {
+    return /^https?:\/\//i.test(url);
+  }
+})();
+</script>
+</body>
+</html>
