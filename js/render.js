@@ -197,6 +197,12 @@
       var outerR = 48;
       var outerC = 2 * Math.PI * outerR;
       var outerOverflowArc = outerC * miniOverflowPct / 100;
+      // Dynamic label angle: tracks arc midpoint for small overflows, caps at 9° for larger ones
+      var miniLabelDeg = miniOverflowPct > 0 ? Math.min(miniOverflowPct * 1.8, 9) : 9;
+      var miniLabelRad = miniLabelDeg * Math.PI / 180;
+      var miniLabelX = (50 + outerR * Math.cos(miniLabelRad)).toFixed(1);
+      var miniLabelY = (50 + outerR * Math.sin(miniLabelRad)).toFixed(1);
+      var miniLabelRot = (90 + miniLabelDeg).toFixed(1);
       // After first paint, render actual values to avoid 0% flash on re-render
       var alreadyLoaded = DOG_STATE.dataLoaded;
       var initOffset = alreadyLoaded ? miniOff.toFixed(1) : miniC.toFixed(1);
@@ -219,10 +225,11 @@
             + 'style="fill:none;stroke:#111827;stroke-width:13;stroke-linecap:round" '
             + 'stroke-dasharray="' + outerC.toFixed(1) + '" '
             + 'stroke-dashoffset="' + (outerC - outerOverflowArc).toFixed(1) + '" />'
-            // Label pill: x controls screen vertical position (SVG rotated -90deg)
-            + '<g transform="translate(' + (50 + outerR - 2) + ',57) rotate(99)">'
+            // Label: positioned at arc midpoint for small overflows, fixed at 9° for larger ones
+            + '<g transform="translate(' + miniLabelX + ',' + miniLabelY + ') rotate(' + miniLabelRot + ')">'
             + '<g class="overflow-pill-pulse">'
-            + '<text x="0" y="1" text-anchor="middle" font-size="7.5" font-weight="900" fill="#fff">+'
+            + '<circle cx="-2" cy="1" r="1.2" fill="#fff" />'
+            + '<text x="0" y="1" text-anchor="start" font-size="7.5" font-weight="900" fill="#fff">+'
             + miniOverflowPct + '%</text>'
             + '</g></g>'
           : '')
