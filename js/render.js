@@ -228,7 +228,6 @@
             // Label: positioned at arc midpoint for small overflows, fixed at 9° for larger ones
             + '<g transform="translate(' + miniLabelX + ',' + miniLabelY + ') rotate(' + miniLabelRot + ')">'
             + '<g class="overflow-pill-pulse">'
-            + '<circle cx="-2" cy="1" r="1.2" fill="#fff" />'
             + '<text x="0" y="1" text-anchor="start" font-size="7.5" font-weight="900" fill="#fff">+'
             + miniOverflowPct + '%</text>'
             + '</g></g>'
