@@ -221,7 +221,7 @@
             + 'stroke-dashoffset="' + (outerC - outerOverflowArc).toFixed(1) + '" />'
             + '<g transform="translate(' + (50 + outerR - 2) + ',57) rotate(99)">'
             + '<g class="overflow-pill-pulse">'
-            + '<text x="0" y="1" text-anchor="middle" font-size="7.5" font-weight="900" fill="#fff">+'
+            + '<text x="' + (miniOverflowPct < 4 ? '-4' : '0') + '" y="1" text-anchor="middle" font-size="7.5" font-weight="900" fill="#fff">+'
             + miniOverflowPct + '%</text>'
             + '</g></g>'
           : '')
