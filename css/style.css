@@ -654,11 +654,11 @@ body::before {
   background: #111827;
   color: #fff;
   font-family: 'Carter One', cursive;
-  font-size: clamp(19px, 2.75vw, 25px);
+  font-size: clamp(18px, 2.6vw, 24px);
   font-weight: 400;
   letter-spacing: -0.03em;
-  padding: 10px 22px;
-  border-radius: 19px;
+  padding: 9px 21px;
+  border-radius: 18px;
   white-space: nowrap;
   transform-origin: center;
   z-index: 10;
