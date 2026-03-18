@@ -648,8 +648,9 @@ body::before {
 /* "Goal exceeded!" badge — positioned near 12 o'clock on the ring */
 .meter-goal-exceeded {
   position: absolute;
-  top: calc(4% - 79px);
-  left: calc(-5% + 110px);
+  top: calc(50% - 20px);
+  left: 50%;
+  transform: translateX(-50%) rotate(-8deg);
   background: #111827;
   color: #fff;
   font-family: 'Carter One', cursive;
@@ -659,16 +660,15 @@ body::before {
   padding: 11px 23px;
   border-radius: 20px;
   white-space: nowrap;
-  transform: rotate(-8deg);
-  transform-origin: bottom right;
+  transform-origin: center;
   z-index: 10;
   pointer-events: none;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
   animation: badge-float-primary 2.8s ease-in-out infinite;
 }
 @keyframes badge-float-primary {
-  0%, 100% { transform: rotate(-8deg) translateY(0); }
-  50%       { transform: rotate(-8deg) translateY(-3px); }
+  0%, 100% { transform: translateX(-50%) rotate(-8deg) translateY(0); }
+  50%       { transform: translateX(-50%) rotate(-8deg) translateY(-3px); }
 }
 .meter-goal-exceeded .fire-flicker {
   display: inline-block;
@@ -678,13 +678,13 @@ body::before {
 .meter-goal-exceeded::after {
   content: '';
   position: absolute;
-  bottom: -7px;
-  right: 18%;
+  top: -7px;
+  left: 25%;
   width: 0;
   height: 0;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-top: 8px solid #111827;
+  border-bottom: 8px solid #111827;
 }
 
 .meter-ring-pulse {
@@ -2192,8 +2192,8 @@ body::before {
 /* Mobile */
 @media (max-width: 768px) {
   .meter-goal-exceeded {
-    left: calc(5% + 75px);
-    top: calc(-2% - 22px);
+    left: 50%;
+    top: calc(50% - 15px);
     font-size: clamp(11px, 1.7vw, 15px);
     padding: 6px 13px;
   }
