@@ -648,8 +648,8 @@ body::before {
 /* "Goal exceeded!" badge — positioned near 12 o'clock on the ring */
 .meter-goal-exceeded {
   position: absolute;
-  top: calc(4% - 55px);
-  left: calc(-5% + 25px);
+  top: calc(4% - 67px);
+  left: calc(-5% + 75px);
   background: #111827;
   color: #fff;
   font-family: 'Carter One', cursive;
@@ -2192,8 +2192,8 @@ body::before {
 /* Mobile */
 @media (max-width: 768px) {
   .meter-goal-exceeded {
-    left: calc(5% + 25px);
-    top: calc(-2% - 10px);
+    left: calc(5% + 75px);
+    top: calc(-2% - 22px);
     font-size: clamp(11px, 1.7vw, 15px);
     padding: 6px 13px;
   }
