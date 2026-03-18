@@ -650,7 +650,7 @@ body::before {
   position: absolute;
   top: calc(50% - 215px);
   left: 50%;
-  transform: translateX(-50%) rotate(-4deg);
+  transform: translateX(calc(-50% - 15px)) rotate(-4deg);
   background: #111827;
   color: #fff;
   font-family: 'Carter One', cursive;
@@ -667,8 +667,8 @@ body::before {
   animation: badge-float-primary 2.8s ease-in-out infinite;
 }
 @keyframes badge-float-primary {
-  0%, 100% { transform: translateX(-50%) rotate(-4deg) translateY(0); }
-  50%       { transform: translateX(-50%) rotate(-4deg) translateY(-3px); }
+  0%, 100% { transform: translateX(calc(-50% - 15px)) rotate(-4deg) translateY(0); }
+  50%       { transform: translateX(calc(-50% - 15px)) rotate(-4deg) translateY(-3px); }
 }
 .meter-goal-exceeded .fire-flicker {
   display: inline-block;
