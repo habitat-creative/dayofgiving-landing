@@ -654,11 +654,11 @@ body::before {
   background: #111827;
   color: #fff;
   font-family: 'Carter One', cursive;
-  font-size: clamp(17px, 2.5vw, 23px);
+  font-size: clamp(19px, 2.75vw, 25px);
   font-weight: 400;
   letter-spacing: -0.03em;
-  padding: 9px 20px;
-  border-radius: 17px;
+  padding: 10px 22px;
+  border-radius: 19px;
   white-space: nowrap;
   transform-origin: center;
   z-index: 10;
@@ -679,7 +679,7 @@ body::before {
   content: '';
   position: absolute;
   top: -7px;
-  right: calc(18% + 12px);
+  right: calc(18% + 22px);
   width: 0;
   height: 0;
   border-left: 7px solid transparent;
