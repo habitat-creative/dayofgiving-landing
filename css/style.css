@@ -2193,9 +2193,12 @@ body::before {
 @media (max-width: 768px) {
   .meter-goal-exceeded {
     left: 50%;
-    top: calc(50% - 140px);
+    top: calc(50% - 130px);
     font-size: clamp(11px, 1.7vw, 15px);
     padding: 6px 13px;
+  }
+  .meter-goal-exceeded::after {
+    right: calc(18% + 18px);
   }
   .hero { padding: 80px var(--space-md) 4rem; }
   .hero-logo-wrap { margin-bottom: var(--space-xs); margin-top: -25px; }
