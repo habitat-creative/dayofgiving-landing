@@ -650,7 +650,7 @@ body::before {
   position: absolute;
   top: calc(50% - 224px);
   left: 50%;
-  transform: translateX(calc(-50% + 2px)) rotate(-4deg);
+  transform: translateX(calc(-50% + 2px)) rotate(-4deg) scale(0);
   background: #111827;
   color: #fff;
   font-family: 'Carter One', cursive;
@@ -664,7 +664,17 @@ body::before {
   z-index: 10;
   pointer-events: none;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-  animation: badge-float-primary 2.8s ease-in-out infinite;
+  opacity: 0;
+}
+.meter-goal-exceeded.visible {
+  animation: badgeBounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+             badge-float-primary 2.8s ease-in-out 0.6s infinite;
+}
+@keyframes badgeBounceIn {
+  0%   { opacity: 0; transform: translateX(calc(-50% + 2px)) rotate(-4deg) scale(0); }
+  60%  { opacity: 1; transform: translateX(calc(-50% + 2px)) rotate(-4deg) scale(1.15); }
+  80%  { transform: translateX(calc(-50% + 2px)) rotate(-4deg) scale(0.95); }
+  100% { opacity: 1; transform: translateX(calc(-50% + 2px)) rotate(-4deg) scale(1); }
 }
 @keyframes badge-float-primary {
   0%, 100% { transform: translateX(calc(-50% + 2px)) rotate(-4deg) translateY(0); }
@@ -1364,8 +1374,20 @@ body::before {
   stroke-linecap: round;
   filter: drop-shadow(0 0 4px rgba(22, 163, 74, 0.6));
 }
-.overflow-pill-pulse text {
-  animation: pillColorLoop 2s ease-in-out infinite;
+.overflow-pill-pulse {
+  opacity: 0;
+  transform: scale(0);
+}
+.overflow-pill-pulse.visible {
+  animation: pillBounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.overflow-pill-pulse.visible text {
+  animation: pillColorLoop 2s ease-in-out 0.5s infinite;
+}
+@keyframes pillBounceIn {
+  0%   { opacity: 0; transform: scale(0); }
+  60%  { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
 }
 @keyframes pillColorLoop {
   0%, 100% { fill: #fff; }

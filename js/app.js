@@ -489,6 +489,13 @@
         ringOverflow.getBoundingClientRect();
         ringOverflow.style.strokeDashoffset = ringOverflow.dataset.targetOffset;
       }, 2000);
+      // Bounce in the +N% pill and "Goal exceeded" badge after overflow ring finishes
+      setTimeout(function() {
+        var pill = meterSection.querySelector('.overflow-pill-pulse');
+        var badge = meterSection.querySelector('.meter-goal-exceeded');
+        if (pill) pill.classList.add('visible');
+        if (badge) badge.classList.add('visible');
+      }, 4000);
     }
 
     var duration = 2000;

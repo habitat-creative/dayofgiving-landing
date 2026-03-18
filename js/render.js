@@ -142,7 +142,7 @@
             var lx = 150 + 130 * Math.sin(rad);
             var ly = 150 - 130 * Math.cos(rad);
             return '<g transform="translate(' + lx.toFixed(1) + ',' + ly.toFixed(1) + ') rotate(' + midAngle.toFixed(1) + ')">'
-              + '<g class="overflow-pill-pulse">'
+              + '<g class="overflow-pill-pulse' + (animated ? ' visible' : '') + '">'
               + '<text x="0" y="5" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">+'
               + overflowPct + '%</text>'
               + '</g></g>';
@@ -155,7 +155,7 @@
       + '<polygon points="162,20 153,14 153,26" fill="#fff" stroke="#fff" stroke-width="3" stroke-linejoin="round" opacity="0.7" />'
       + '</g></g>')
       + '</svg>'
-      + (overflowPct > 0 ? '<div class="meter-goal-exceeded">' + t('goal_exceeded') + '</div>' : '')
+      + (overflowPct > 0 ? '<div class="meter-goal-exceeded' + (animated ? ' visible' : '') + '">' + t('goal_exceeded') + '</div>' : '')
       + '<div class="meter-center">'
       + '<div class="meter-amount" id="meterAmount">' + displayAmount + '</div>'
       + '<div class="meter-sublabel">' + t('meter_donations_match') + '</div>'
