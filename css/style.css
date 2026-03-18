@@ -648,7 +648,7 @@ body::before {
 /* "Goal exceeded!" badge — positioned near 12 o'clock on the ring */
 .meter-goal-exceeded {
   position: absolute;
-  top: calc(50% - 20px);
+  top: calc(50% - 95px);
   left: 50%;
   transform: translateX(-50%) rotate(-8deg);
   background: #111827;
@@ -678,13 +678,13 @@ body::before {
 .meter-goal-exceeded::after {
   content: '';
   position: absolute;
-  top: -7px;
+  bottom: -7px;
   left: 25%;
   width: 0;
   height: 0;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-bottom: 8px solid #111827;
+  border-top: 8px solid #111827;
 }
 
 .meter-ring-pulse {
@@ -2193,7 +2193,7 @@ body::before {
 @media (max-width: 768px) {
   .meter-goal-exceeded {
     left: 50%;
-    top: calc(50% - 15px);
+    top: calc(50% - 75px);
     font-size: clamp(11px, 1.7vw, 15px);
     padding: 6px 13px;
   }
