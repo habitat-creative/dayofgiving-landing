@@ -133,8 +133,8 @@
       + 'stroke-dasharray="0.01 9999" stroke-dashoffset="' + capOffset + '" '
       + 'data-target-offset="' + (offset - circumference).toFixed(1) + '" />'
       + (overflowPct > 0
-        ? '<circle cx="150" cy="150" r="130" '
-          + 'style="fill:none;stroke:#111827;stroke-width:16;stroke-linecap:round;transform:rotate(-90deg);transform-origin:center" '
+        ? '<circle class="meter-ring-overflow" cx="150" cy="150" r="130" '
+          + 'style="stroke:#111827;stroke-width:16" '
           + 'stroke-dasharray="' + circumference.toFixed(1) + '" '
           + 'stroke-dashoffset="' + overflowRingOffset + '" '
           + 'data-target-offset="' + overflowTargetOffset + '" />'
