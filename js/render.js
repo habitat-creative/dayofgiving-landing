@@ -134,9 +134,7 @@
       + 'data-target-offset="' + (offset - circumference).toFixed(1) + '" />'
       + (overflowPct > 0
         ? '<circle class="meter-ring-overflow" cx="150" cy="150" r="130" '
-          + 'style="fill:none;stroke:#111827;stroke-width:16;stroke-linecap:round;transform:rotate(-90deg);transform-origin:center;filter:none" '
-          + 'stroke-dasharray="' + circumference.toFixed(1) + '" '
-          + 'stroke-dashoffset="' + overflowRingOffset + '" '
+          + 'style="fill:none;stroke:#111827;stroke-width:16;stroke-linecap:round;transform:rotate(-90deg);transform-origin:center;filter:none;stroke-dasharray:' + circumference.toFixed(1) + ';stroke-dashoffset:' + overflowRingOffset + ';transition:stroke-dashoffset 2s cubic-bezier(0.19,1,0.22,1)" '
           + 'data-target-offset="' + overflowTargetOffset + '" />'
           + (function() {
             var midAngle = (overflowPct / 100 * 360) * 0.18;
