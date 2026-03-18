@@ -482,11 +482,13 @@
       ringPulse.getBoundingClientRect();
       ringPulse.style.transform = 'rotate(' + ringPulse.dataset.targetAngle + 'deg)';
     }
-    // Animate overflow ring (if goal exceeded)
+    // Animate overflow ring (if goal exceeded) — delay until primary ring completes
     var ringOverflow = meterSection.querySelector('.meter-ring-overflow');
     if (ringOverflow && ringOverflow.dataset.targetOffset) {
-      ringOverflow.getBoundingClientRect();
-      ringOverflow.style.strokeDashoffset = ringOverflow.dataset.targetOffset;
+      setTimeout(function() {
+        ringOverflow.getBoundingClientRect();
+        ringOverflow.style.strokeDashoffset = ringOverflow.dataset.targetOffset;
+      }, 2000);
     }
 
     var duration = 2000;
