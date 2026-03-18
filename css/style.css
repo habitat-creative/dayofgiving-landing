@@ -2193,9 +2193,9 @@ body::before {
 @media (max-width: 768px) {
   .meter-goal-exceeded {
     left: 50%;
-    top: calc(50% - 130px);
-    font-size: clamp(11px, 1.7vw, 15px);
-    padding: 6px 13px;
+    top: calc(50% - 124px);
+    font-size: clamp(12px, 1.8vw, 16px);
+    padding: 6px 14px;
   }
   .meter-goal-exceeded::after {
     right: calc(18% + 18px);
