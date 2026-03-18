@@ -648,8 +648,8 @@ body::before {
 /* "Goal exceeded!" badge — positioned near 12 o'clock on the ring */
 .meter-goal-exceeded {
   position: absolute;
-  top: calc(4% - 67px);
-  left: calc(-5% + 75px);
+  top: calc(4% - 79px);
+  left: calc(-5% + 110px);
   background: #111827;
   color: #fff;
   font-family: 'Carter One', cursive;
